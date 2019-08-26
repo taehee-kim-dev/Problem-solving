@@ -12,3 +12,4 @@ Used programming language is C++.
   1. Input&output and arithmetic
   2. if statement
   3. for statement
+  4. while statement
