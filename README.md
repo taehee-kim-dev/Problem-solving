@@ -13,3 +13,4 @@ Used programming language is C++.
   2. if statement
   3. for statement
   4. while statement
+  5. 1-dimensional array
