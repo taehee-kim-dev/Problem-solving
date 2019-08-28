@@ -9,9 +9,9 @@ Used programming language is C++.
   -------------------------------------------------
   The numeric file names represent the problem numbers in Baekjoon online judge.
   
-  1. Input&output and arithmetic
-  2. if statement
-  3. for statement
-  4. while statement
-  5. 1-dimensional array
-  6. Function
+  - Input&output and arithmetic
+  - if statement
+  - for statement
+  - while statement
+  - 1-dimensional array
+  - Function
