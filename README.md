@@ -15,3 +15,4 @@ Used programming language is C++.
   - while statement
   - 1-dimensional array
   - Function
+  - String
