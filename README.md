@@ -16,3 +16,4 @@ Used programming language is C++.
   - 1-dimensional array
   - Function
   - String
+  - Math_1
