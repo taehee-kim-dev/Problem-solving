@@ -17,3 +17,4 @@ Used programming language is C++.
   - Function
   - String
   - Math_1
+  - Math_2
