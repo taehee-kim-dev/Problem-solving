@@ -18,3 +18,4 @@ Used programming language is C++.
   - String
   - Math_1
   - Math_2
+  - Brute Force
