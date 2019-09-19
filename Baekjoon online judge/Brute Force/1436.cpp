@@ -21,7 +21,7 @@ int main(void){
                 if(count_consecutive_six==3){
                     end_numbers.push_back(i);
                     count_consecutive_six=0;
-                    continue;
+                    break;
                 }
             }else{
                 count_consecutive_six=0;
