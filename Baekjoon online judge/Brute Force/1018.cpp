@@ -47,29 +47,30 @@ int main(void){
 
             for(int r=n;r<n+8;r++){
                 for(int c=m;c<m+8;c++){
-
-                    if(board[n][m]=='W'){
                         if(board[r][c]!=white_first_correct[r-n][c-m]){
                             count++;
-                            printf("r=%d, c=%d, r-n=%d, c-m=%d, board=%c, answer=%c //", r, c, r-n, c-m, board[r][c], white_first_correct[r-n][c-m]);
                         }
-                    }else if(board[n][m]=='B'){
-                        if(board[r][c]!=black_first_correct[r-n][c-m]){
-                            count++;
-                            printf("r=%d, c=%d, r-n=%d, c-m=%d, board=%c, answer=%c //", r, c, r-n, c-m, board[r][c], black_first_correct[r-n][c-m]);
-                        }
-                    }
                 }
-                printf("\n");
             }
-
-            printf("\n");
 
             if(count<min){
                 min=count;
             }
+
+            count=0;
+
+            for(int r=n;r<n+8;r++){
+                for(int c=m;c<m+8;c++){
+                        if(board[r][c]!=black_first_correct[r-n][c-m]){
+                            count++;
+                        }
+                    }
+                }
+
+            if(count<min){
+                min=count;
         }
-        printf("\n");
+    }
     }
 
     printf("%d", min);
