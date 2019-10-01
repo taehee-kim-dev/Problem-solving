@@ -19,3 +19,4 @@ Used programming language is C++.
   - Math_1
   - Math_2
   - Brute Force
+  - Dynamic programming
