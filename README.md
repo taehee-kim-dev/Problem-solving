@@ -3,7 +3,7 @@ Problem solving
 
 This is repository of my submitted answer code files for problem solving.
 
-Used programming language is C++.
+Used programming language is C++ and Python.
 
 - Baekjoon online judge (https://www.acmicpc.net/)
   -------------------------------------------------
