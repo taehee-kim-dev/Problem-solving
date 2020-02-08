@@ -5,7 +5,7 @@ This is repository of my submitted answer code files about problem solving.
 
 Used programming language is C++ and Python.
 
-***
+- - -
 
 Source of Problem
 ------------------
@@ -18,7 +18,7 @@ Source of Problem
   
 - [Baekjoon online judge](https://www.acmicpc.net, "Baekjoon online judge link")
 
-***
+- - -
 
 [Baekjoon online judge](https://www.acmicpc.net, "Baekjoon online judge link")
   -------------------------------------------------
