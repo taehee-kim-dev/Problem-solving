@@ -15,13 +15,15 @@ Source of Problem
 - Kakao winter internship coding test
   
 - INU code festival 2019
-  
-- [Baekjoon online judge](https://www.acmicpc.net, "Baekjoon online judge link")
+
+- [Baekjoon online judge][Baekjoon link]
+
+[Baekjoon link]: https://www.acmicpc.net "Baekjoon online judge link"
 
 - - -
 
-[Baekjoon online judge](https://www.acmicpc.net, "Baekjoon online judge link")
-  -------------------------------------------------
+[Baekjoon online judge][Baekjoon link]
+  ----------------------------------------------------------------------------
 
   The numeric file names represent the problem numbers in Baekjoon online judge.
 
