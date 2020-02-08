@@ -1,22 +1,42 @@
 Problem solving
-========================
+===============
 
-This is repository of my submitted answer code files for problem solving.
+This is repository of my submitted answer code files about problem solving.
 
 Used programming language is C++ and Python.
 
-- Baekjoon online judge (https://www.acmicpc.net/)
-  -------------------------------------------------
-  The numeric file names represent the problem numbers in Baekjoon online judge.
+***
+
+Source of Problem
+------------------
+
+- Kakao code festival 2018
   
-  - Input&output and arithmetic
-  - if statement
-  - for statement
-  - while statement
-  - 1-dimensional array
-  - Function
-  - String
-  - Math_1
-  - Math_2
-  - Brute Force
-  - Dynamic programming
+- Kakao winter internship coding test
+  
+- INU code festival 2019
+  
+- [Baekjoon online judge](https://www.acmicpc.net, "Baekjoon online judge link")
+
+***
+
+[Baekjoon online judge](https://www.acmicpc.net, "Baekjoon online judge link")
+  -------------------------------------------------
+
+  The numeric file names represent the problem numbers in Baekjoon online judge.
+
+- Input&output and arithmetic
+- if statement
+- for statement
+- while statement
+- One-dimensional array
+- Function
+- String
+- Math1
+- Math2
+- Recursion
+- Brute Force
+- Sort
+- Backtracking
+- Dynamic programming1
+  
