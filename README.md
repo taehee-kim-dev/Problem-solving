@@ -10,7 +10,7 @@ Used programming language is C++ and Python.
 Source of Problem
 ------------------
 
-- Kakao code festival 2018
+- Kakao code festival qualifiers 2018
   
 - Kakao winter internship coding test 2019
   
