@@ -7,7 +7,7 @@ Used programming language is C++ and Python.
 
 - - -
 
-Sources of Problem
+Source of Problem
 ------------------
 
 - Kakao code festival qualifiers 2018
@@ -18,18 +18,7 @@ Sources of Problem
 
 - [Baekjoon online judge][Baekjoon link]
 
-- [CodeUp][CodeUp link]
-
 [Baekjoon link]: https://www.acmicpc.net "Baekjoon online judge link"
-[CodeUp link]: https://codeup.kr/index.php "CodeUp link"
-- - -
-
-[CodeUp][CodeUp link]
-  ----------------------------------------------------------------------------
-
-  The numeric file names represent the problem numbers in CodeUp.
-
-- Basic 100 problems
 
 - - -
 
