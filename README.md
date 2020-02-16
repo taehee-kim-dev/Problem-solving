@@ -41,4 +41,5 @@ Source of Problem
 - Sort
 - Backtracking
 - Dynamic programming1
+- Greedy algorithm
   
