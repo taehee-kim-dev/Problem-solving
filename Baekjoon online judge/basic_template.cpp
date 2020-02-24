@@ -14,8 +14,8 @@ void input(){
 
 int main(void){
 
-    solve();
     input();
+    solve();
 
     return 0;
 }
