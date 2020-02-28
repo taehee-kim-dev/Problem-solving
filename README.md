@@ -48,6 +48,4 @@ Source of Problem
 - Greedy algorithm
   
 - - -
-
-[Programmers][Programmers link]
------------------------------------------------------------------------------
+  
