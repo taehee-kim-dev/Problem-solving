@@ -58,12 +58,3 @@ vector<int> solution(vector<int> answers) {
 
     return answer;
 }
-
-int main(void){
-
-    vector<int> test_input{1, 2, 3, 4, 5};
-
-    solution(test_input);
-
-    return 0;
-}
