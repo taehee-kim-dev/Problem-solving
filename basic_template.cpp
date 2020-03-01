@@ -2,11 +2,7 @@
 
 using namespace std;
 
-void solve(){
-
-}
-
-void input(){
+void solution(){
 
 }
 
@@ -15,8 +11,7 @@ int main(void){
     cin.tie(NULL); 
     cout.tie(NULL);
     
-    input();
-    solve();
+    solution();
 
     return 0;
 }
