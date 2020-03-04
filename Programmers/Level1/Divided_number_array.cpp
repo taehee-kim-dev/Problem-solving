@@ -1,5 +1,7 @@
 #include <iostream>
 
+
+
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -23,6 +25,8 @@ vector<int> solution(vector<int> arr, int divisor) {
 
     return answer;
 }
+
+
 
 int main(void){
     ios_base :: sync_with_stdio(false); 

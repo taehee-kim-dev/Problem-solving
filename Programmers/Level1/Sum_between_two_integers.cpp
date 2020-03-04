@@ -2,10 +2,6 @@
 
 
 
-
-
-
-
 #include <string>
 #include <vector>
 
@@ -26,11 +22,6 @@ long long solution(int a, int b) {
 
     return answer;
 }
-
-
-
-
-
 
 
 
