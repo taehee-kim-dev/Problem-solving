@@ -1,21 +1,19 @@
-#include <iostream>
-
-
+#include <string>
+#include <vector>
 
 using namespace std;
 
-void solution(){
+int solution(int n) {
+    int answer = 0;
 
-}
+    for(int i = 1; i <= n/i; i++){
+        if(n % i == 0){
+            if(i == n/i)
+                answer += i;
+            else
+                answer += (i + n/i);
+        }
+    }
 
-
-
-int main(void){
-    ios_base :: sync_with_stdio(false); 
-    cin.tie(NULL); 
-    cout.tie(NULL);
-    
-    solution();
-
-    return 0;
+    return answer;
 }
