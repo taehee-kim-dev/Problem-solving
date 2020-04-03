@@ -1,4 +1,3 @@
-#include <string>
 #include <vector>
 #include <utility>
 #include <deque>
@@ -82,11 +81,4 @@ int solution(vector<int> priorities, int location) {
         }
 
     }
-}
-
-int main(void){
-
-    solution(vector<int>{1, 1, 9, 1, 1, 1}, 0);
-
-    return 0;
 }
