@@ -53,7 +53,3 @@ def solution(str1, str2):
         return 65536
 
     return int(intersection_size / union_size * 65536)
-
-
-print(solution("FRANCE", "french"))
-
