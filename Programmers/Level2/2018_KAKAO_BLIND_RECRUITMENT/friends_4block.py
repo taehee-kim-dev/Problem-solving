@@ -4,8 +4,8 @@ def solution(height, width, board_list):
     # board_list를 90도 회전시킨 새로운 리스트 new_board_list를 구한다.
     new_board_list = list(map(list, zip(*(reversed(board_list)))))
 
-    # # print
-    # print("초기 블록 배열")
+    # # 테스트 프린트
+    # print("초기 블록 배열 테스트 프린트")
     # for col_line_index in range(len(new_board_list)):
     #     for height_index in range(len(new_board_list[col_line_index])):
     #         print(new_board_list[col_line_index][height_index], end=' ')
@@ -27,7 +27,8 @@ def solution(height, width, board_list):
                 # 해당 블록들을 지워야 하므로,
                 # 블록의 길이가 1이라면 값 뒤에 'd' 추가
                 # 아니라면 이미 뒤에 'd'가 추가되어 있으므로 그냥 놔둠.
-
+                
+                # 테스트 프린트
                 # if current_col_line_index == 4 and current_height_index == 4:
                 #     print("current_block : ", current_block)
                 #     print("new_board_list[current_col_line_index][current_height_index][0] : ",
@@ -85,8 +86,8 @@ def solution(height, width, board_list):
                     new_board_list[current_col_line_index + 1][current_height_index + 1] \
                         = new_board_list[current_col_line_index + 1][current_height_index + 1] + 'd'
                     
+            # # 테스트 프린트
             # # 세로 모두 검사 후
-            # # print
             # print(new_board_list)
             # print("세로 모두 검사 후 블록 배열")
             # for col_line_index in range(len(new_board_list)):
@@ -110,8 +111,9 @@ def solution(height, width, board_list):
             if len_diff > 0:
                 answer += len_diff
                 is_deleted = True
-
-        # print("삭제 처리 후 블록 배열")
+        
+        # # 테스트 프린트
+        # print("삭제 처리 후 블록 배열 테스트 프린트")
         # for col_line_index in range(len(new_board_list)):
         #     for height_index in range(len(new_board_list[col_line_index])):
         #         print(new_board_list[col_line_index][height_index], end=' ')
