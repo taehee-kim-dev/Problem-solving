@@ -37,6 +37,11 @@ for day_i in range(1, N + 1):
         # max(해당 상담 종료 날짜의 기존 최대값, 해당 상담을 했을 때의 종료 날짜의 수익 최대값)
         dp_max_income_up_to_day_i[day_i + Ti[day_i] - 1] \
             = max(dp_max_income_up_to_day_i[day_i + Ti[day_i] - 1],
-                  max(dp_max_income_up_to_day_i[:day_i]) + Pi[day_i])
+                  dp_max_income_up_to_day_i[day_i - 1] + Pi[day_i])
+
+    # day_i일의 상담을 하지 않을 경우
+    dp_max_income_up_to_day_i[day_i] = max(dp_max_income_up_to_day_i[day_i - 1],
+                                           dp_max_income_up_to_day_i[day_i])
+
         
-print(max(dp_max_income_up_to_day_i))
+print(dp_max_income_up_to_day_i[-1])
