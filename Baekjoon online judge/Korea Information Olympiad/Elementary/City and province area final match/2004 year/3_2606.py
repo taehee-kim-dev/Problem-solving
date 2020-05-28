@@ -4,7 +4,7 @@
 """
 
 
-def bfs(current_checking_computer_number):
+def dfs(current_checking_computer_number):
     global total_infected_computer_count
 
     # 만약 이미 방문한 컴퓨터라면
@@ -22,7 +22,7 @@ def bfs(current_checking_computer_number):
     for another_linked_computer_number_with_current_checking_computer_number \
             in linked_inform[current_checking_computer_number]:
 
-        bfs(another_linked_computer_number_with_current_checking_computer_number)
+        dfs(another_linked_computer_number_with_current_checking_computer_number)
 
     return
 
@@ -55,6 +55,6 @@ for _ in range(case_count):
     linked_inform[a_computer].append(b_computer)
     linked_inform[b_computer].append(a_computer)
 
-bfs(1)
+dfs(1)
 
 print(total_infected_computer_count - 1)
