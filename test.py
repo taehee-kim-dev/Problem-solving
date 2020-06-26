@@ -1,9 +1,5 @@
 
-test = 10
-
-def solution():
-    global test
-    test = test + 1
-    print(test)
-
-solution()
+for i in range(10):
+    if i == 3:
+        i += 1
+    print(i)
