@@ -1,5 +1,6 @@
+from itertools import permutations
 
-for i in range(10):
-    if i == 3:
-        i += 1
-    print(i)
+operators = ['+', '-', '*']
+operators_permutations = list(permutations(operators))
+
+print(operators_permutations)
