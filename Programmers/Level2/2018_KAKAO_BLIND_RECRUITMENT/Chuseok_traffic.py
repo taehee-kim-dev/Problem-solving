@@ -37,15 +37,14 @@ def solution(lines):
 
         tasks.append(Task(initial_request_time_in_milli_seconds, response_end_time_in_milli_seconds))
 
-        times.append(initial_request_time_in_milli_seconds)
         times.append(response_end_time_in_milli_seconds)
 
     times = list(set(times))
     times.sort()
 
-    for start_time in times:
-        end_time = start_time + 999
-        current_tasks = len(list(filter(lambda task: task.is_on_processing(start_time, end_time), tasks)))
+    for start_time_in_range_of_one_second in times:
+        end_time_in_range_of_one_second = start_time_in_range_of_one_second + 999
+        current_tasks = len(list(filter(lambda task: task.is_on_processing(start_time_in_range_of_one_second, end_time_in_range_of_one_second), tasks)))
         if current_tasks > answer:
             answer = current_tasks
     return answer
