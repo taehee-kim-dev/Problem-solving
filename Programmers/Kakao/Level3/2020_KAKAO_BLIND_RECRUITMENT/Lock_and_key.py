@@ -62,5 +62,3 @@ def solution(key, lock):
         else:
             current_key = rotate_90(current_key)
     return False
-
-
