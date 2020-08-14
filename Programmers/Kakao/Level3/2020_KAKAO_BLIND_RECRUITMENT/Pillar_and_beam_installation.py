@@ -42,13 +42,10 @@ def do_task(structures_status_for_test, task):
                 Beam(task_structure_x, task_structure_y))
     else:
         # 삭제이면
-        result = \
-            list(filter(
-                lambda structure: structure.x != task_structure_x
-                and structure.y != task_structure_y
-                and structure.type != task_structure_type,
-                result
-            ))
+        result = [construct for construct in structures_status_for_test
+                  if construct.x != task_structure_x
+                  or construct.y != task_structure_y
+                  or construct.type != task_structure_type]
     return result
 
 
@@ -93,7 +90,7 @@ def is_beam_connected_with_other_beams(beam_to_check, all_installed_beams):
                 is_right_end_of_beam_to_check_connected = True
             if beam_to_check.left_end_x == installed_beam.right_end_x:
                 is_left_end_of_beam_to_check_connected = True
-    return False
+    return is_left_end_of_beam_to_check_connected and is_right_end_of_beam_to_check_connected
 
 
 def is_valid_structures_status(structures_status_for_test):
@@ -126,30 +123,11 @@ def solution(n, build_frame):
     # [x, y, 구조물의 종류(0:기둥, 1:보), 작업 종류(0:삭제, 1:설치)]
     current_structures_status = []
     for task in build_frame:
-        if task == [2, 0, 0, 0]:
-            print('debug')
         structures_status_for_test = deepcopy(current_structures_status)
         structures_status_for_test = do_task(structures_status_for_test, task)
         if is_valid_structures_status(structures_status_for_test):
             current_structures_status = do_task(current_structures_status, task)
 
-        print(answer)
-
     convert_objects_to_arrays(current_structures_status, answer)
     answer = sorted(answer, key=lambda x: (x[0], x[1], x[2]))
-    return
-
-print(solution(
-    5,
-    [
-        [0, 0, 0, 1],
-        [2, 0, 0, 1],
-        [4, 0, 0, 1],
-        [0, 1, 1, 1],
-        [1, 1, 1, 1],
-        [2, 1, 1, 1],
-        [3, 1, 1, 1],
-        [2, 0, 0, 0],
-        [1, 1, 1, 0],
-        [2, 2, 0, 1]]
-))
+    return answer
