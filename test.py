@@ -1,6 +1,5 @@
 from itertools import permutations
 
-operators = ['+', '-', '*']
-operators_permutations = list(permutations(operators))
+test = [1, 2, 3, 4, 5]
+print(permutations(test, len(test)))
 
-print(operators_permutations)
