@@ -11,14 +11,14 @@ part2 = (x2, y2)
 """
 
 
-def get_next_positions_to_visit(board_extension, current_position):
-    # current_position은 set형태이다.
+def get_next_positions_to_visit(board_extension, visited_position):
+    # visited_position set형태이다.
     # set형태는 순서가 없어서 index로 접근할 수 없다.
     # 따라서, 아래와 같이 list로 변환한 후에 index로 접근해야 한다.
-    current_position = list(current_position)
+    visited_position = list(visited_position)
     # 로봇을 반으로 쪼개 두 파트로 나눈다.
-    part1 = current_position[0]  # (x1, y1)
-    part2 = current_position[1]  # (x2, y2)
+    part1 = visited_position[0]  # (x1, y1)
+    part2 = visited_position[1]  # (x2, y2)
     # 다음 위치로 가능한 경우들을 모두 여기에 담아 마지막에 반환한다.
     next_positions = []
 
@@ -90,41 +90,35 @@ def solution(board):
     # 로봇의 왼쪽 오른쪽을 튜플로 구분지으니 다른 경우로 나타나게 된다.
     # 따라서, 이러한 중복을 막기 위해 집합으로 정의한다.
     start_robot_position = {(1, 1), (1, 2)}
-    # 방문예정인 로봇의 위치와 방문할 때의 시간을 큐에 저장하여 차례로 방문.
-    positions_to_visit_and_time = Queue()
-    # [로봇의 위치, 방문 시간]
-    positions_to_visit_and_time.put([start_robot_position, start_time])
-    # 이미 방문했거나, 방문 예정 Queue에 이미 들어가있는 위치 저장.
-    already_visited_positions = []
+    # BFS 탐색 구현을 위해 방문한 위치와 그 때의 시간을 저장할 큐 생성
+    queue_for_bfs = Queue()
+    # [방문한 로봇의 위치, 방문 시간]의 리스트를 만들어 큐에 put
+    queue_for_bfs.put([start_robot_position, start_time])
+    # 이미 방문한 위치를 저장할 list 선언
+    visited_positions = []
     # 목적지 (N, N)
-    final_destination = (N, N)
+    destination = (N, N)
 
-    # 방문할 위치가 저장된 큐가 비어있지 않는 한 계속 반복
-    while not positions_to_visit_and_time.empty():
-        # 방문할 로봇의 위치와 시간을 큐에서 꺼내 방문한다.
-        current_position_and_time = positions_to_visit_and_time.get()
-        # 만약 현재 방문한 로봇의 위치 중에서 목적지가 포함되어 있으면,
-        # 목적지에 도달한 것이므로,
-        # 이 방문에 해당하는 방문 시간을 반환한다.
-        if final_destination in current_position_and_time[0]:
-            return current_position_and_time[1]
+    # BFS 탐색을 위한 큐가 비어있지 않는 한 계속 반복
+    while not queue_for_bfs.empty():
+        # BFS 탐색을 위한 큐에서 하나를 꺼낸다. (이미 방문한 위치와 시간임.)
+        visited_position_and_time = queue_for_bfs.get()
 
-        # 함수에 지도와 현재 방문한 위치를 매개변수로 넘겨, 다음 1초동안 방문할 수 있는 모든 위치의 경우들을 가져온다.
-        next_positions_to_visit = get_next_positions_to_visit(board_extension, current_position_and_time[0])
+        # 함수에 지도와 방문한 위치를 매개변수로 넘겨, 다음 1초동안 방문할 수 있는 모든 위치의 경우들을 가져온다.
+        next_positions_can_visit = get_next_positions_to_visit(board_extension, visited_position_and_time[0])
 
         # 다음 1초동안 방문할 수 있는 모든 위치의 경우들을 하나씩 차례대로 꺼낸다.
-        for next_position in next_positions_to_visit:
-            # 방문 가능한 위치가 이미 방문했거나 방문예정인 위치가 아니라면,
-            if next_position not in already_visited_positions:
-                # 방문 예정 Queue에 방문할 위치와 현재 방문 시간 + 1을 넣는다.
-                positions_to_visit_and_time.put([next_position, current_position_and_time[1] + 1])
-                # BFS에서는 한 번 Queue에 넣은 경우는 다시 넣지 않는다.
-                # 방문 예정 Queue에 넣는 순간, 이 경우는 더이상 다시는 방문 예정 Queue에 들어가면 안된다.
-                # 만약 방문 예정 Queue에 넣는 순간이 아니라, 
-                # 이후에 A에 실제 방문할 때 already_visited_positions에 A를 넣는다고 치자.
-                # A가 현재 순서부터 1000번째 뒤의 순서에 있을 경우,
-                # 이 프로그램은 A를 실제로 방문할 때 까지,
-                # A가 방문 예정임을 알지 못하므로
-                # 방문 예정 Queue에 A를 계속 넣게 된다.
-                # 따라서 수많은 중복이 발생하게 되고, 스택오버플로우나 시간초과를 야기하게 된다.
-                already_visited_positions.append(next_position)
+        for next_position in next_positions_can_visit:
+            # 방문 가능한 위치가 이미 방문한 위치가 아니라면,
+            if next_position not in visited_positions:
+                # 방문한다.
+                # 만약 현재 방문한 로봇의 위치 중에서 목적지가 포함되어 있으면,
+                # 목적지에 도달한 것이므로,
+                # 이 방문에 해당하는 방문 시간을 바로 반환한다.
+                if destination in next_position:
+                    return visited_position_and_time[1] + 1
+                # 목적지가 아니라면,
+                # BFS 탐색을 위한 Queue에 방문한 위치와 위의 visited_position_and_time에서의 방문 시간 + 1을 넣는다.
+                queue_for_bfs.put([next_position, visited_position_and_time[1] + 1])
+                # 그리고, 방문한 위치 전체를 저장하는 list에도 추가한다.
+                visited_positions.append(next_position)
