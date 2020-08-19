@@ -44,12 +44,12 @@ def can_cross_stones(stones, number_of_people, k):
 def solution(stones, k):
     # 징검다리를 건널 수 있는 최소 인원 수
     min_number_of_people_for_test = 1
-    # 징검다리를 건널 수 있는 최대 인원 수
-    max_number_of_people_for_test = 200000000
+    # 징검다리를 건널 수 있는 최대 인원 수 + 1
+    max_number_of_people_for_test = 200000001
 
     # 이분탐색
-    # 최소인원과 최소인원의 차이가 1 이하일 때 까지 탐색
-    while max_number_of_people_for_test - min_number_of_people_for_test > 1:
+    # 최소인원과 최소인원의 차이가 1일 때 까지 탐색
+    while max_number_of_people_for_test - min_number_of_people_for_test != 1:
         # 최소 인원과 최소 인원의 중간값을 구한다. (소수점 버림)
         mid_number_of_people_for_test = (min_number_of_people_for_test + max_number_of_people_for_test) // 2
         if can_cross_stones(stones, mid_number_of_people_for_test, k):
@@ -59,8 +59,8 @@ def solution(stones, k):
             min_number_of_people_for_test = mid_number_of_people_for_test
         else:
             # 중간값의 인원으로 건널 수 없으면,
-            # 중간값의 인원보다 작은 범위에 최대값이 존재한다.
-            # 최댓값을 중간값으로 설정한다.
+            # 징검다리를 건널 수 있는 최대 인원수 값은 이 중간값 미만의 범위에 있다.
+            # 따라서 최댓값을 중간값으로 설정한다.
             max_number_of_people_for_test = mid_number_of_people_for_test
 
     # 그러면 무조건 최솟값이 징검다리를 건널 수 있는 최대 인원이 된다.
