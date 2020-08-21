@@ -1,5 +1,3 @@
-
-
-test = {1: 1, 2: 2, 3: 3}
-
-print(len(test))
+test1 = (1, 0)
+test2 = (test1[0] * -1, test1[1] * -1)
+print(test2)
