@@ -1,3 +1,13 @@
-test1 = (1, 0)
-test2 = (test1[0] * -1, test1[1] * -1)
-print(test2)
+
+def func2():
+    global test
+    test -= 1
+    print(test)
+
+
+def func1():
+    global test
+    test = 10
+
+func1()
+func2()
