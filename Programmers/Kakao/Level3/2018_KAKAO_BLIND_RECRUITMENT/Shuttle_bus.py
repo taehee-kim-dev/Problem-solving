@@ -2,91 +2,73 @@
 셔틀버스
 """
 
-from copy import deepcopy
-
-
-def make_timetable_with_con(crew_timetable_in_minutes, con_time):
-    timetable = deepcopy(crew_timetable_in_minutes)
-    # 마지막에 콘을 넣을 때 비교를 위해 매우 큰 시간 값 삽입
-    timetable.append((2000000000, 'last'))
-    ret = []
-    before_crew_time = 0
-    for crew in timetable:
-        # 시간 순서대로 서되,
-        # 같은 도착시간의 크루들이 있을때는 그들의 맨 뒤에 선다.
-        if before_crew_time <= con_time < crew[0]:
-            ret.append((con_time, 'con'))
-        ret.append(crew)
-        before_crew_time = crew[0]
-
-    return ret
-
-
-def con_get_on_the_bus(bus_time, timetable_with_con, m, con_time):
-    # 버스가 도착했을 때,
-    # 버스 도착 시간을 포함한 이전에 줄울 서 있는 사람들 중에
-    save_time_crew = [crew for crew in timetable_with_con if crew[0] <= bus_time]
-    # m명만 버스를 탈 수 있다.
-    crew_who_can_get_on_the_bus = save_time_crew[:m]
-    # 버스를 탑승한 크루들은 리스트에서 제거한다.
-    for crew in crew_who_can_get_on_the_bus:
-        timetable_with_con.remove(crew)
-    # 버스에 탑승한 크루들 중에 콘이 포함되어있는지 여부 반환
-    return (con_time, 'con') in crew_who_can_get_on_the_bus
-
 
 def solution(n, t, m, timetable):
-    # 고려해 봐야 하는 콘의 셔틀 대기열 도착시간들
-    timetable_of_con = []
+
+    # 콘이 셔틀버스를 탈 수 있는 시간들 중 가장 늦은 시간
+    con_time = -1
+
     # 셔틀버스 도착 시작시간 9:00를 분단위로 변환
     shuttle_bus_start_time_in_minutes = 9 * 60
-    # 셔틀버스가 도착하는 시간들
+    # 셔틀버스가 도착하는 시간들 분단위로 저장
     shuttle_bus_timetable_in_minutes = []
     # 셔틀버스는 n회 운행
     for count in range(n):
         # 셔틀버스 도착 시간 계산
         shuttle_bus_time = shuttle_bus_start_time_in_minutes + (t * count)
         shuttle_bus_timetable_in_minutes.append(shuttle_bus_time)
-        # 콘이 셔틀버스 도착 시간에 도착하는 경우를 고려한다.
-        timetable_of_con.append(shuttle_bus_time)
-    # 크루들 도착시간
-    crew_timetable_in_minutes = []
-    for index, time in enumerate(timetable):
+
+    # 대기열에 서있는 크루들 도착시간 분단위로 저장
+    waiting_crew_time = []
+    for time in timetable:
         hours, minutes = map(int, time.split(':'))
-        total_minutes = hours * 60 + minutes
-        crew_timetable_in_minutes.append((total_minutes, 'crew{}'.format(index)))
-        # 콘이 각 크루들의 도착시간 1분 전에 도착하는 경우를 고려한다.
-        timetable_of_con.append(total_minutes - 1)
+        time_in_minutes = hours * 60 + minutes
+        waiting_crew_time.append(time_in_minutes)
 
-    # 크루들 도착시간 오름차순 정렬
-    crew_timetable_in_minutes.sort(key=lambda x: x[0])
-    # 고려하는 콘의 도착시간 모든 경우 오름차순 정렬
-    timetable_of_con = list(set(timetable_of_con))
-    timetable_of_con.sort()
-    # 콘이 버스를 탈 수 있는 도착시간들
-    time_con_can_get_on_the_bus = []
+    # 크루들 도착시간 입력값이 순서가 뒤죽박죽이므로, 오름차순으로 정렬
+    waiting_crew_time.sort()
 
-    # 고려하는 콘의 도착시간의 경우를 하나씩 검사
-    for con_time in timetable_of_con:
-        # 크루들의 도착시간에 콘의 도착시간을 끼워넣는다.
-        timetable_with_con = make_timetable_with_con(crew_timetable_in_minutes, con_time)
-        # 버스가 도착하는 시간들을 하나씩 검사
-        for bus_time in shuttle_bus_timetable_in_minutes:
-            # 콘이 이 조건에서 버스를 탈 수 있는가?
-            if con_get_on_the_bus(bus_time, timetable_with_con, m, con_time):
-                # 탈 수 있으면, 콘이 버스를 탈 수 있는 도착시간들을 저장하는 리스트에 저장
-                time_con_can_get_on_the_bus.append(con_time)
-                break
+    """
+    무조건 막차의 마지막 순서로 탄다.
+    콘을 제외하고 크루들만 버스를 타는 경우를 생각해 본다.
+    
+    막차가 크루틀로 꽉차면, 마지막으로 탑승하는 크루보다 1분 빨리 도착해야 한다.
+    막차가 콘이 없어도 크루들로 꽉차는데 콘이 마지막으로 탄 크루와 같은 시간에 도착하면
+    문제설명에 따라 같은 시각에 도착한 크루 중 대기열에서 제일 뒤에 서게 되므로 
+    막차를 타지 못한다.
+    
+    막자가 크루들로 꽉차지 않으면, 버스 도착시간에 도착해도 탑승할 수 있다. 
+    """
+    # 셔틀버스의 도착시간이 이른순서대로 차례대로 탑승처리
+    for bus_index, bus_time in enumerate(shuttle_bus_timetable_in_minutes):
+        # 현재 탑승처리중인 버스에 탑승한 사람 수
+        number_of_people_on_the_bus = 0
+        # 현재 탑승처리중인 버스에 탑승한 크루들의 도착시간
+        crew_time_on_the_bus = []
+        # 크루들 버스 탑승
+        # 버스 도착시간을 포함하여 이전에 온 크루들만 버스탑승의 1차적 고려대상이 될 수 있다.
+        for crew_time in [crew_time for crew_time in waiting_crew_time if crew_time <= bus_time]:
+            if number_of_people_on_the_bus < m:
+                # 버스에 자리가 남아있어야 버스에 탈 수 있다.
+                # 현재 버스에 탑승한 크루들의 도착시간을 저장한다.
+                crew_time_on_the_bus.append(crew_time)
+                # 현재 버스에 탑승한 사람 수를 1 증가시킨다.
+                number_of_people_on_the_bus += 1
 
-    # 콘이 버스를 탈 수 있는 도착시간들 중에 가장 늦은 도착시간을 꺼내서
-    latest_time = sorted(time_con_can_get_on_the_bus)[-1]
+        # 버스에 탑승한 크루들의 수 만큼 대기열에 서있는 크루들의 맨 앞부터 삭제
+        waiting_crew_time = waiting_crew_time[number_of_people_on_the_bus:]
+
+        # 현재 탑승처리를 한 버스가 막차일 때
+        if bus_index == len(shuttle_bus_timetable_in_minutes) - 1:
+            if number_of_people_on_the_bus == m:
+                # 만약 막차가 크루들로 꽉찼으면
+                # 콘은 마지막에 탑승한 크루의 도착시간보다 1분 더 일찍 도착해야 한다.
+                con_time = crew_time_on_the_bus[-1] - 1
+            else:
+                # 만약 막차가 꽉차지 않았으면
+                # 콘은 버스 도착시간에 도착해도 탑승할 수 있다.
+                con_time = bus_time
+
     # 단위가 분이므로 시간과 분 단위로 나눈다.
-    hours = str(latest_time // 60)
-    minutes = str(latest_time % 60)
     # 정답 문자열 형식에 맞게 조합하여 반환한다.
-    return '{}:{}'.format(hours.zfill(2), minutes.zfill(2))
-
-
-
-#print(solution(1, 1, 5, ['08:00', '08:01', '08:02', '08:03']))
-print(solution(10, 60, 10, ["17:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59"]))
+    return '{}:{}'.format(str(con_time // 60).zfill(2), str(con_time % 60).zfill(2))
