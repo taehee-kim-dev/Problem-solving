@@ -32,13 +32,13 @@ def get_word_search_count(page_object, word):
 
 
 def get_own_link(page_object):
-    meta_tag = re.search('<meta property="og:url" content="https://(.*)"/*>', page_object.content)
+    meta_tag = re.search('<meta property=\"og:url\" content=\"https://(.*)\"', page_object.content)
     return meta_tag.groups()[0]
 
 
 def get_external_links(page_object):
     body_tag = re.search('<body>.*</body>', page_object.content, re.DOTALL)
-    return re.findall('<a href="https://(.*)">', body_tag.group())
+    return re.findall('<a href=\"https://(.*)\"', body_tag.group())
 
 
 def solution(word, pages):
