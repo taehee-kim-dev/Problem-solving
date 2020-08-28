@@ -1,6 +1,5 @@
-for i in range(2):
-    test1 = 11
-    for j in range(2):
-        test2 = 22
+test1 = ''
 
-print(test2)
+test2 = []
+
+print(test1 in test2)
