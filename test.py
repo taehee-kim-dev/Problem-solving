@@ -1,5 +1,3 @@
-test1 = ''
+test1 = '....s....b....re.gbb...d.'
 
-test2 = []
-
-print(test1 in test2)
+print(test1.split('.'))
