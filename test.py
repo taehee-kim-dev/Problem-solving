@@ -1,3 +1,4 @@
-test1 = '....s....b....re.gbb...d.'
+test_dict = {'a': {'name': 'hello', 'phone': 000}, 'b': {'name': 'hello', 'phone': 000}}
+test_dict['a']['name'] = 'bob'
+print('test')
 
-print(test1.split('.'))
