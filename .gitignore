@@ -1,8 +1,9 @@
-.vscode/settings.json
+
 .idea
 /venv
 *.exe
 
-/NAVER_2020_CAMPUS_HACKDAY
-
-/2020_summer_Kakao_Internship
+/INU code festival 2019/
+/Kakao winter internship coding test 2019/
+/2021_LINE_PLUS_RECRUITMENT_CODING_TEST/
+/2021_KAKAO_BLIND_RECRUITMENT/
