@@ -1,4 +1,4 @@
 
-test ='abcd'
+test = ['0', '1', '2', '3', '4']
 
-print(test[9:10])
+print(''.join(test))
