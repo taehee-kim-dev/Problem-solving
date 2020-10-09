@@ -1,4 +1,2 @@
 
-t1 = [1]
-t2 = [3]
-print(t1 + t2)
+test = list(range(1, 10 + 1))
