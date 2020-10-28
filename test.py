@@ -1,3 +1,3 @@
 
 
-print(set(range(1, 10)))
+print(0b111)
