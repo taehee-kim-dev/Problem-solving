@@ -1,3 +1,3 @@
 
 
-print(0b111)
+print(ord('a'))
