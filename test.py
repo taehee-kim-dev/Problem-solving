@@ -1,3 +1,4 @@
+a = [1, 2, 3]
+b = [5]
 
-
-print(ord('a'))
+print(a + b)
