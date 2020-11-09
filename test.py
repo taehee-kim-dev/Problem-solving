@@ -1,2 +1,2 @@
-s = '01'
-print(s.zfill(3))
+for i in None:
+    print(i)
