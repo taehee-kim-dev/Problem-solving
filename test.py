@@ -1,2 +1,2 @@
-for i in None:
-    print(i)
+test = []
+print(sum(test))
