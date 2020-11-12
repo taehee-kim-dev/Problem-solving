@@ -1,2 +1,1 @@
-test = []
-print(sum(test))
+print(int('101', 2))
