@@ -1,1 +1,3 @@
-print(int('101', 2))
+a = 'bca'
+a.sort()
+print(a)
