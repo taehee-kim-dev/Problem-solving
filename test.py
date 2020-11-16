@@ -1,2 +1,3 @@
-for i in None:
-    print(i)
+a = 'bca'
+a.sort()
+print(a)
