@@ -9,13 +9,13 @@ class TreeNode:
 class Solution:
     def invertTree(self, root: TreeNode) -> TreeNode:
 
-        def inorder(cur_node: TreeNode):
+        def preorder(cur_node: TreeNode):
             if not cur_node:
                 return
 
             cur_node.left, cur_node.right = cur_node.right, cur_node.left
-            inorder(cur_node.left)
-            inorder(cur_node.right)
+            preorder(cur_node.left)
+            preorder(cur_node.right)
 
-        inorder(root)
+        preorder(root)
         return root
