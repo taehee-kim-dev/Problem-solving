@@ -1,3 +1,3 @@
-a = 'bca'
-a.sort()
-print(a)
+test = 'abcde'
+test.replace('c', 'C')
+print(test)
